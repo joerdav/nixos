@@ -1,4 +1,4 @@
-{ pkgs, adrianSSHKey, rootSSHKey, ... }:
+{ pkgs, joeSSHKey, rootSSHKey, ... }:
 
 {
   networking.hostName = "builder";
@@ -34,7 +34,7 @@
   time.timeZone = "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
   console.keyMap = "us";
-  nix.settings.trusted-users = [ "adrian" "@wheel" ];
+  nix.settings.trusted-users = [ "joe" "@wheel" ];
   nix.settings.system-features = [ "kvm" "nixos-test" ];
 
   boot = {
@@ -54,11 +54,11 @@
 
   users.users = {
     root.hashedPassword = "!"; # Disable root login
-    adrian = {
+    joe = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
       openssh.authorizedKeys.keys = [
-        adrianSSHKey
+        joeSSHKey
         rootSSHKey
       ];
     };
